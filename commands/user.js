@@ -10,6 +10,6 @@ module.exports = {
 		const memberRoles = interaction.member.roles.cache
 			.filter ((roles) => roles.id !== interaction.guild.id)
 			.map((role) => role.toString());
-		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}\nAccount Creation Date: ${moment().utc(interaction.user.createdAt).format('dddd, MMMM Do YYYY')}\nYour role(s): ${memberRoles}`);
+		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}\nAccount Creation Date: ${moment.utc(interaction.user.createdAt).format('dddd, MMMM Do YYYY')}\nYour role(s): ${memberRoles}`);
 	},
 };
