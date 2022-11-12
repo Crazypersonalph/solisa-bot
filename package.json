@@ -1,5 +1,5 @@
 {
-  "name": "solisa-bot",
+  "name": "solise-bot",
   "version": "1.0.0",
   "description": "A discord bot",
   "main": "index.js",
