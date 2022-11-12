@@ -5,6 +5,9 @@ module.exports = {
 		.setName('user')
 		.setDescription('Info about a user'),
 	async execute(interaction) {
-		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}\nYour roles: ${interaction.guild.roles}`);
+		const memberRoles = interaction.member.roles.cache
+			.filter ((roles) => roles.id !== interaction.guild.id)
+			.map((role) => role.toString());
+		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}\nYour roles: ${memberRoles}`);
 	},
 };
