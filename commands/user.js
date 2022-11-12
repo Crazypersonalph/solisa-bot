@@ -8,6 +8,6 @@ module.exports = {
 		const memberRoles = interaction.member.roles.cache
 			.filter ((roles) => roles.id !== interaction.guild.id)
 			.map((role) => role.toString());
-		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}\nYour roles: ${memberRoles}`);
+		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}\nYour role(s): ${memberRoles}`);
 	},
 };
