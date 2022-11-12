@@ -13,7 +13,7 @@ module.exports = {
 			option.setName('reason')
 				.setDescription('The reason for muting')
 				.setRequired(true))
-		.addSrtingOption(option =>
+		.addStringOption(option =>
 			option.setName('time')
 				.setDescription('How long they will be muted for (eg, 1d, 1m, 1s, 1ms)')
 				.setRequired(true)),
