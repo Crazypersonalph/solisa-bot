@@ -29,7 +29,7 @@ module.exports = {
 		else {
 			reason = interaction.options.getString('reason');
 		}
-		await user.timeout(time);
+		await interaction.guild.members.timeout(user, time);
 		await interaction.reply(`Muted (timed-out) ${user} for ${reason}`);
 	},
 };
