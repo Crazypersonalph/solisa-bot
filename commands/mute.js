@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
+const { ms } = require('ms');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -22,6 +23,10 @@ module.exports = {
 		const user = interaction.options.getUser('user');
 		let reason;
 		const time = interaction.options.getString('time');
+
+		const member = interaction.guild.members.cache.get(user.id);
+		const timeinMs = ms(time);
+		if (!timeinMs) return await interaction.followUp('Please specify a valid time');
 		if (interaction.options.getString('reason') == '') {
 			reason = 'No reason specified';
 
@@ -29,7 +34,7 @@ module.exports = {
 		else {
 			reason = interaction.options.getString('reason');
 		}
-		await interaction.guild.members.timeout(user, time);
-		await interaction.reply(`Muted (timed-out) ${user} for ${reason}`);
+		await member.timeout(timeinMs, reason);
+		await interaction.reply(`Muted (timed-out) ${user} for ${reason} and ${time} long`);
 	},
 };
