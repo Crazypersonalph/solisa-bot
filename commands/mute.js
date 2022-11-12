@@ -13,7 +13,7 @@ module.exports = {
 			option.setName('reason')
 				.setDescription('The reason for muting')
 				.setRequired(true))
-		.addIntegerOption(option =>
+		.addSrtingOption(option =>
 			option.setName('time')
 				.setDescription('How long they will be muted for (eg, 1d, 1m, 1s, 1ms)')
 				.setRequired(true)),
@@ -21,7 +21,7 @@ module.exports = {
 	async execute(interaction) {
 		const user = interaction.options.getUser('user');
 		let reason;
-		const time = interaction.options.getInteger('time');
+		const time = interaction.options.getString('time');
 		if (interaction.options.getString('reason') == '') {
 			reason = 'No reason specified';
 
