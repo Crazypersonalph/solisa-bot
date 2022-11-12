@@ -15,7 +15,7 @@ module.exports = {
 				.setRequired(true))
 		.addIntegerOption(option =>
 			option.setName('time')
-				.setDescription('How long they will be muted for (minutes)')
+				.setDescription('How long they will be muted for (eg, 1d, 1m, 1s, 1ms)')
 				.setRequired(true)),
 
 	async execute(interaction) {
@@ -29,7 +29,7 @@ module.exports = {
 		else {
 			reason = interaction.options.getString('reason');
 		}
-		await interaction.guild.members.timeout(user, time * 60000);
+		await user.timeout(time);
 		await interaction.reply(`Muted (timed-out) ${user} for ${reason}`);
 	},
 };
