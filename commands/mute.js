@@ -35,6 +35,6 @@ module.exports = {
 			reason = interaction.options.getString('reason');
 		}
 		await member.timeout(timeinMs, reason);
-		await interaction.reply(`Muted (timed-out) ${user} for ${reason} and ${time} long`);
+		await interaction.reply(`Muted (timed-out) ${user} for reason ${reason} and for ${time} long`);
 	},
 };
