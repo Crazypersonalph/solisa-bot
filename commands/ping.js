@@ -5,6 +5,6 @@ module.exports = {
 		.setDescription('Replies with Pong!'),
 	async execute(interaction) {
 		const sent = await interaction.reply({ content: 'Pinging...', fetchReply: true });
-		await interaction.reply(`Pong! (${sent.createdTimestamp - interaction.createdTimestamp}ms)`);
+		await interaction.editReply(`Pong! (${sent.createdTimestamp - interaction.createdTimestamp}ms)`);
 	},
 };
