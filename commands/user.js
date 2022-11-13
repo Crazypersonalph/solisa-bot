@@ -5,11 +5,17 @@ moment().format();
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('user')
-		.setDescription('Info about a user'),
+		.setDescription('Info about a user')
+		.addUserOption(option =>
+			option.setName('target')
+				.setDescription('User to have information gathered')
+				.setRequired(true)),
 	async execute(interaction) {
-		const memberRoles = interaction.member.roles.cache
+		const user = interaction.options.getUser('target');
+		const member = interaction.guild.members.cache.get(user.id);
+		const memberRoles = member.roles.cache
 			.filter ((roles) => roles.id !== interaction.guild.id)
 			.map((role) => role.toString());
-		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}\nAccount Creation Date: ${moment.utc(interaction.user.createdAt).format('dddd, MMMM Do YYYY')}\nYour role(s): ${memberRoles}`);
+		await interaction.reply(`Your tag: ${user.tag}\nYour id: ${user.id}\nAccount Creation Date: ${moment.utc(user.createdAt).format('dddd, MMMM Do YYYY')}\nYour role(s): ${memberRoles}`);
 	},
 };
