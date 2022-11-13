@@ -16,6 +16,6 @@ module.exports = {
 		const memberRoles = member.roles.cache
 			.filter ((roles) => roles.id !== interaction.guild.id)
 			.map((role) => role.toString());
-		await interaction.reply(`Your tag: ${user.tag}\nYour id: ${user.id}\nAccount Creation Date: ${moment.utc(user.createdAt).format('dddd, MMMM Do YYYY')}\nYour role(s): ${memberRoles}`);
+		await interaction.reply(`Tag: ${user.tag}\nId: ${user.id}\nAccount Creation Date: ${moment.utc(user.createdAt).format('dddd, MMMM Do YYYY')}\nRole(s): ${memberRoles}`);
 	},
 };
