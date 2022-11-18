@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { addBalance, getBalance } = require('../index.js');
-const { Users, CurrencyShop } = require('./dbObjects.js');
+const { Users, CurrencyShop } = require('../dbObjects.js');
 const { Op } = require('sequelize');
 
 module.exports = {

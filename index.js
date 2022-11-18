@@ -13,7 +13,7 @@ const path = require('node:path');
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
-export const currency = new Collection();
+const currency = new Collection();
 const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
@@ -46,25 +46,25 @@ for (const file of commandFiles) {
 	}
 }
 
-export async function addBalance(id, amount) {
-	const user = currency.get(id);
+module.exports = {
+	addBalance: async function(id, amount) {
+		const user = currency.get(id);
 
-	if (user) {
-		user.balance += Number(amount);
-		return user.save();
-	}
+		if (user) {
+			user.balance += Number(amount);
+			return user.save();
+		}
 
-	const newUser = await Users.create({ user_id: id, balance: amount });
-	currency.set(id, newUser);
+		const newUser = await Users.create({ user_id: id, balance: amount });
+		currency.set(id, newUser);
 
-	return newUser;
-}
-
-export function getBalance(id) {
-	const user = currency.get(id);
-	return user ? user.balance : 0;
-}
-
+		return newUser;
+	},
+	getBalance: function(id) {
+		const user = currency.get(id);
+		return user ? user.balance : 0;
+	},
+};
 
 // Log in to Discord with your client's token
 client.login(token);

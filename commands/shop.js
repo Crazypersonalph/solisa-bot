@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, codeBlock } = require('discord.js');
-const { CurrencyShop } = require('./dbObjects.js');
+const { CurrencyShop } = require('../dbObjects.js');
 
 module.exports = {
 	data:   new SlashCommandBuilder()
