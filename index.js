@@ -6,13 +6,14 @@ console.log('hello');
 
 // Require the necessary discord.js classes
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
+const { Users } = require('./dbObjects.js');
 const token = process.env.TOKEN;
 const fs = require('node:fs');
 const path = require('node:path');
 
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
+export const currency = new Collection();
 const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
@@ -43,6 +44,25 @@ for (const file of commandFiles) {
 	else {
 		console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 	}
+}
+
+export async function addBalance(id, amount) {
+	const user = currency.get(id);
+
+	if (user) {
+		user.balance += Number(amount);
+		return user.save();
+	}
+
+	const newUser = await Users.create({ user_id: id, balance: amount });
+	currency.set(id, newUser);
+
+	return newUser;
+}
+
+export function getBalance(id) {
+	const user = currency.get(id);
+	return user ? user.balance : 0;
 }
 
 
