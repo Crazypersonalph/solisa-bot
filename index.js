@@ -46,3 +46,4 @@ for (const file of commandFiles) {
 
 // Log in to Discord with your client's token
 client.login(token);
+// hello
