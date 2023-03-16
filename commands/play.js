@@ -13,8 +13,9 @@ module.exports = {
 		const user = interaction.options.getUser('user');
 		let url;
 		let voiceChannel;
+		let member;
 		url = interaction.options.getString('url');
-		// test for hook #2
-
+		interaction.guild.members.cache.get(user);
+		// test for CI/CD
 	},
 };
