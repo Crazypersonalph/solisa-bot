@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource } = require('@discordjs/voice');
+const { spawn } = require('child_process');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -15,8 +16,9 @@ module.exports = {
 		const member = interaction.guild.members.cache.get(user);
 		console.log(member.voice);
 		console.log(member.voice.channel);
-		const exec = require('child_process').exec;
-		console.log(exec('pwd', { encoding: 'utf-8' }));
+		spawn('pwd').stdout.on('data', (data) => {
+			console.log(`stdout: ${ data }`);
+		});
 		const player = createAudioPlayer();
 		const connection = joinVoiceChannel({
 			channelId: member.voice.channel.id,
