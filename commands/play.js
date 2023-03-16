@@ -13,6 +13,7 @@ module.exports = {
 		const user = interaction.user.id;
 		const url = interaction.options.getString('url');
 		const member = interaction.guild.members.cache.get(user);
+		console.log(member.voice);
 		const player = createAudioPlayer();
 		const connection = joinVoiceChannel({
 			channelId: member.voice.channel.id,
