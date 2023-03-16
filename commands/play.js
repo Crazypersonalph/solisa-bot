@@ -24,7 +24,5 @@ module.exports = {
 		const resource = createAudioResource('/home/alphons/solisa-bot/still alive.mp3');
 		player.play(resource);
 		connection.subscribe(player);
-
-		console.log(member.voice.channel);
 	},
 };
