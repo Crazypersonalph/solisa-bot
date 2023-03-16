@@ -23,7 +23,7 @@ module.exports = {
 			guildId: member.voice.channel.guildId,
 			adapterCreator: member.voice.guild.voiceAdapterCreator,
 		});
-		const resource = createAudioResource(ytdl(url).pipe());
+		const resource = createAudioResource(ytdl(url, { filter: format => format.container === 'webm' }));
 		connection.subscribe(player);
 		player.play(resource);
 		player.stop();
