@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource } = require('@discordjs/voice');
 const { spawn } = require('child_process');
+const { ffmpeg } = require('ffmpeg');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -25,8 +26,11 @@ module.exports = {
 			guildId: member.voice.channel.guildId,
 			adapterCreator: member.voice.guild.voiceAdapterCreator,
 		});
-		const resource = createAudioResource(url);
+		const process = new ffmpeg(url);
+		process.fnExtractSoundToMP3('music.mp3');
+		const resource = createAudioResource('music.mp3');
 		player.play(resource);
 		connection.subscribe(player);
+		player.stop();
 	},
 };
