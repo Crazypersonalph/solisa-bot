@@ -15,8 +15,12 @@ module.exports = {
 		let voiceChannel;
 		let member;
 		url = interaction.options.getString('url');
-		console.log(interaction.guild.members.cache.get(user));
-		console.log(user);
-		// test for CI/CD
+		member = interaction.guild.members.cache.get(user);
+		if (member.voice.channel) {
+			console.log(`${member.user.tag} is connected to ${member.voice.channel.name}!`);
+		}
+		else {
+			console.log(`${member.user.tag} is not connected.`);
+		}
 	},
 };
