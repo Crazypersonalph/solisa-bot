@@ -16,6 +16,7 @@ module.exports = {
 		const user = interaction.user.id;
 		const url = interaction.options.getString('url');
 		const member = interaction.guild.members.cache.get(user);
+		const stream = ytdl(url, { filter: 'audioonly' });
 		console.log(member.voice);
 		console.log(member.voice.channel);
 		const player = createAudioPlayer();
@@ -24,7 +25,7 @@ module.exports = {
 			guildId: member.voice.channel.guildId,
 			adapterCreator: member.voice.guild.voiceAdapterCreator,
 		});
-		const resource = createAudioResource(ytdl(url, { filter: 'audioonly' }));
+		const resource = createAudioResource(stream);
 		connection.subscribe(player);
 		player.play(resource);
 		player.stop();
