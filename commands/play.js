@@ -15,7 +15,7 @@ module.exports = {
 		let voiceChannel;
 		let member;
 		url = interaction.options.getString('url');
-		interaction.guild.members.cache.get(user);
+		console.log(interaction.guild.members.cache.get(user));
 		// test for CI/CD
 	},
 };
