@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource } = require('@discordjs/voice');
 const ytdl = require('ytdl-core');
+const { StreamType } = require('@discordjs/voice');
 // const { createReadStream } = require('node:fs');
 
 module.exports = {
@@ -23,7 +24,7 @@ module.exports = {
 			guildId: member.voice.channel.guildId,
 			adapterCreator: member.voice.guild.voiceAdapterCreator,
 		});
-		const resource = createAudioResource(ytdl(url, { filter: format => format.container === 'webm' }));
+		const resource = createAudioResource(ytdl(url, { filter: 'audioonly' }), { inputType: StreamType.Arbitrary });
 		connection.subscribe(player);
 		player.play(resource);
 		player.stop();
