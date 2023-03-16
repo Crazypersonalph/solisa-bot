@@ -16,6 +16,7 @@ module.exports = {
 		let member;
 		url = interaction.options.getString('url');
 		console.log(interaction.guild.members.cache.get(user));
+		console.log(user);
 		// test for CI/CD
 	},
 };
