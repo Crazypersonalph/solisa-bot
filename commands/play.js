@@ -16,7 +16,7 @@ module.exports = {
 		console.log(member.voice);
 		console.log(member.voice.channel);
 		const exec = require('child_process').exec;
-		console.log(exec('pwd'));
+		console.log(exec('pwd', { encoding: 'utf-8' }));
 		const player = createAudioPlayer();
 		const connection = joinVoiceChannel({
 			channelId: member.voice.channel.id,
