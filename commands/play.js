@@ -16,7 +16,7 @@ module.exports = {
 		const member = interaction.guild.members.cache.get(user);
 		console.log(member.voice);
 		console.log(member.voice.channel);
-		spawn('pwd').stdout.on('data', (data) => {
+		spawn('./yt-dlp', ['--get-url', url]).stdout.on('data', (data) => {
 			console.log(`stdout: ${ data }`);
 		});
 		const player = createAudioPlayer();
@@ -25,7 +25,7 @@ module.exports = {
 			guildId: member.voice.channel.guildId,
 			adapterCreator: member.voice.guild.voiceAdapterCreator,
 		});
-		const resource = createAudioResource('/home/alphons/solisa-bot/still alive.mp3');
+		const resource = createAudioResource('still alive.mp3');
 		player.play(resource);
 		connection.subscribe(player);
 	},
