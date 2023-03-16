@@ -19,7 +19,7 @@ module.exports = {
 			guildId: member.voice.guild.id,
 			adapterCreator: member.voice.guild.voiceAdapterCreator,
 		});
-		const resource = createAudioResource('/home/alphons/solisa-bot');
+		const resource = createAudioResource('/home/alphons/solisa-bot/still alive.mp3');
 		player.play(resource);
 		connection.subscribe(player);
 		player.stop();
