@@ -24,7 +24,7 @@ module.exports = {
 			guildId: member.voice.channel.guildId,
 			adapterCreator: member.voice.guild.voiceAdapterCreator,
 		});
-		const resource = createAudioResource(ytdl(url, { filter: 'audioonly' }), { inputType: StreamType.Arbitrary });
+		const resource = createAudioResource(ytdl(url, { filter: 'audioonly' }));
 		connection.subscribe(player);
 		player.play(resource);
 		player.stop();
