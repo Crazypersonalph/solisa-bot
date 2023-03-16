@@ -16,7 +16,7 @@ module.exports = {
 		const player = createAudioPlayer();
 		const connection = joinVoiceChannel({
 			channelId: member.voice.channel.id,
-			guildId: member.voice.guild.id,
+			guildId: member.voice.channel.guildId,
 			adapterCreator: member.voice.guild.voiceAdapterCreator,
 		});
 		const resource = createAudioResource('/home/alphons/solisa-bot/still alive.mp3');
