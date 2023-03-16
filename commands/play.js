@@ -1,8 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource } = require('@discordjs/voice');
-const { spawn } = require('child_process');
-const ffmpeg = require('ffmpeg');
-const { createReadStream } = require('node:fs');
+const ytdl = require('ytdl-core');
+// const { createReadStream } = require('node:fs');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -14,22 +13,19 @@ module.exports = {
 				.setRequired(true)),
 	async execute(interaction) {
 		const user = interaction.user.id;
-		let url = interaction.options.getString('url');
+		const url = interaction.options.getString('url');
 		const member = interaction.guild.members.cache.get(user);
 		console.log(member.voice);
 		console.log(member.voice.channel);
-		spawn('./yt-dlp', ['--get-url', url]).stdout.on('data', (data) => {
-			url = data;
-		});
 		const player = createAudioPlayer();
 		const connection = joinVoiceChannel({
 			channelId: member.voice.channel.id,
 			guildId: member.voice.channel.guildId,
 			adapterCreator: member.voice.guild.voiceAdapterCreator,
 		});
-		const resource = createAudioResource(createReadStream(url));
-		player.play(resource);
+		const resource = createAudioResource(ytdl(url).pipe());
 		connection.subscribe(player);
+		player.play(resource);
 		player.stop();
 	},
 };
