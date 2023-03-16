@@ -10,7 +10,7 @@ module.exports = {
 				.setDescription('The song you want to play')
 				.setRequired(true)),
 	async execute(interaction) {
-		const user = interaction.options.getUser('user');
+		const user = interaction.user.id;
 		let url;
 		let voiceChannel;
 		let member;
