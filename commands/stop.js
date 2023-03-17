@@ -9,7 +9,7 @@ module.exports = {
 		const user = interaction.user.id;
 		const member = interaction.guild.members.cache.get(user);
 		const connection = getVoiceConnection(member.voice.channel.guildId);
-		connection.state.subscription.player.stop();
+		connection.destroy();
 		interaction.reply('Stopped the music');
 
 	},
