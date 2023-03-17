@@ -29,5 +29,6 @@ module.exports = {
 		const resource = createAudioResource(stream);
 		connection.subscribe(player);
 		player.play(resource);
+		module.exports = { player };
 	},
 };
