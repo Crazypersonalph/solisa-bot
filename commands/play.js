@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource, getVoiceConnection } = require('@discordjs/voice');
 const ytdl = require('ytdl-core');
-let { isPaused } = require('./pause');
+const { client } = require('../index');
 // const { client } = require('../index');
 // const { createReadStream } = require('node:fs');
 
@@ -14,8 +14,8 @@ module.exports = {
 				.setDescription('The song you want to play')
 				.setRequired(true)),
 	async execute(interaction) {
-		if (isPaused) {
-			isPaused = !isPaused;
+		if (client.isPaused) {
+			client.isPaused = !client.isPaused;
 			const user = interaction.user.id;
 			const member = interaction.guild.members.cache.get(user);
 			const connection = getVoiceConnection(member.voice.channel.guildId);
