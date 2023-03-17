@@ -29,6 +29,8 @@ for (const file of eventFiles) {
 
 client.commands = new Collection();
 
+client.queue = new Collection();
+
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
@@ -44,8 +46,6 @@ for (const file of commandFiles) {
 	}
 }
 
-const queue = {};
-
 // Log in to Discord with your client's token
 client.login(token);
 // hello
@@ -53,4 +53,4 @@ client.on('ready', () => {
 	client.user.setActivity('paint dry', { type: ActivityType.Watching });
 });
 
-module.exports = { queue };
+module.exports = { client };
