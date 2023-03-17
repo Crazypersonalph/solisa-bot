@@ -7,7 +7,7 @@ module.exports = {
 		.setDescription('Stop music'),
 	async execute(interaction) {
 
-		player.stop(true);
+		player.stop();
 		interaction.reply('Stopped the music');
 
 	},
