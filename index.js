@@ -29,8 +29,6 @@ for (const file of eventFiles) {
 
 client.commands = new Collection();
 
-const queue = new Collection();
-
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
@@ -52,5 +50,3 @@ client.login(token);
 client.on('ready', () => {
 	client.user.setActivity('paint dry', { type: ActivityType.Watching });
 });
-
-module.exports = { queue };

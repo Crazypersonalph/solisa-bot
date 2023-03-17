@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource } = require('@discordjs/voice');
 const ytdl = require('ytdl-core');
-const { queue } = require('../index');
 // const { createReadStream } = require('node:fs');
 
 module.exports = {
@@ -16,9 +15,8 @@ module.exports = {
 		await interaction.deferReply();
 		const url = interaction.options.getString('url');
 		const song_info = await ytdl.getInfo(url);
-		await interaction.editReply(`Added to the queue: ${song_info.videoDetails.title}`);
-		queue.set(url);
-		const stream = await ytdl(queue.first, { filter: 'audioonly' });
+		await interaction.editReply(`Now Playing: ${song_info.videoDetails.title}`);
+		const stream = await ytdl(url, { filter: 'audioonly' });
 		const user = interaction.user.id;
 		const member = interaction.guild.members.cache.get(user);
 		const connection = joinVoiceChannel({
