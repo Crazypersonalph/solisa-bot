@@ -5,7 +5,7 @@ dotenv.config();
 console.log('hello');
 
 // Require the necessary discord.js classes
-const { Client, Collection, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, GatewayIntentBits, ActivityType } = require('discord.js');
 const token = process.env.TOKEN;
 const fs = require('node:fs');
 const path = require('node:path');
@@ -44,6 +44,10 @@ for (const file of commandFiles) {
 	}
 }
 
+client.user.setActivity('paint dry', { type: ActivityType.Watching });
+
 // Log in to Discord with your client's token
 client.login(token);
 // hello
+
+module.exports = { client };
