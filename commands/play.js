@@ -22,8 +22,10 @@ module.exports = {
 		});
 		const player = createAudioPlayer();
 		const stream = await ytdl(url, { filter: 'audioonly' });
+		const song_info = await ytdl.getInfo(url);
 		const resource = createAudioResource(stream);
 		connection.subscribe(player);
 		player.play(resource);
+		interaction.reply(`Now playing: ${song_info.videoDetails.title}`);
 	},
 };
