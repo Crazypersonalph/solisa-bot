@@ -14,6 +14,7 @@ module.exports = {
 	async execute(interaction) {
 		const url = interaction.options.getString('url');
 		const song_info = await ytdl.getInfo(url);
+		await interaction.deferReply();
 		await interaction.reply(`Now playing: ${song_info.videoDetails.title}`);
 		const user = interaction.user.id;
 		const member = interaction.guild.members.cache.get(user);
