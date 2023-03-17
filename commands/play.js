@@ -26,6 +26,6 @@ module.exports = {
 		const resource = createAudioResource(stream);
 		connection.subscribe(player);
 		player.play(resource);
-		interaction.reply(`Now playing: ${song_info.videoDetails.title}`);
+		await interaction.reply(`Now playing: ${song_info.videoDetails.title}`);
 	},
 };
