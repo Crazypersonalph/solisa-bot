@@ -44,12 +44,13 @@ for (const file of commandFiles) {
 	}
 }
 
+const queue = {};
+
 // Log in to Discord with your client's token
 client.login(token);
 // hello
 client.on('ready', () => {
 	client.user.setActivity('paint dry', { type: ActivityType.Watching });
-	client.queue = {};
 });
 
-module.exports = { client };
+module.exports = { queue };
