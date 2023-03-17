@@ -3,8 +3,8 @@ const { getVoiceConnection } = require('@discordjs/voice');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('stop')
-		.setDescription('Stop music'),
+		.setName('pause')
+		.setDescription('Pause music'),
 	async execute(interaction) {
 		const user = interaction.user.id;
 		const member = interaction.guild.members.cache.get(user);
