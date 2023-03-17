@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource } = require('@discordjs/voice');
 const ytdl = require('ytdl-core');
-const { StreamType } = require('@discordjs/voice');
 // const { createReadStream } = require('node:fs');
 
 module.exports = {
@@ -16,18 +15,15 @@ module.exports = {
 		const user = interaction.user.id;
 		const url = interaction.options.getString('url');
 		const member = interaction.guild.members.cache.get(user);
-		const stream = ytdl(url, { filter: 'audioonly' });
-		console.log(member.voice);
-		console.log(member.voice.channel);
-		const player = createAudioPlayer();
 		const connection = joinVoiceChannel({
 			channelId: member.voice.channel.id,
 			guildId: member.voice.channel.guildId,
 			adapterCreator: member.voice.guild.voiceAdapterCreator,
 		});
+		const player = createAudioPlayer();
+		const stream = await ytdl(url, { filter: 'audioonly' });
 		const resource = createAudioResource(stream);
 		connection.subscribe(player);
 		player.play(resource);
-		player.stop();
 	},
 };
