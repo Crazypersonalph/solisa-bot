@@ -12,12 +12,12 @@ module.exports = {
 				.setDescription('The song you want to play')
 				.setRequired(true)),
 	async execute(interaction) {
+		const url = interaction.options.getString('url');
+		const song_info = await ytdl.getInfo(url);
 		await interaction.reply(`Now playing: ${song_info.videoDetails.title}`);
 		const user = interaction.user.id;
 		const member = interaction.guild.members.cache.get(user);
-		const url = interaction.options.getString('url');
 		const stream = await ytdl(url, { filter: 'audioonly' });
-		const song_info = await ytdl.getInfo(url);
 		const connection = joinVoiceChannel({
 			channelId: member.voice.channel.id,
 			guildId: member.voice.channel.guildId,
