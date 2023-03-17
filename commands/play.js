@@ -15,7 +15,7 @@ module.exports = {
 		const url = interaction.options.getString('url');
 		const song_info = await ytdl.getInfo(url);
 		await interaction.deferReply();
-		await interaction.reply(`Now playing: ${song_info.videoDetails.title}`);
+		await interaction.editReply(`Now playing: ${song_info.videoDetails.title}`);
 		const user = interaction.user.id;
 		const member = interaction.guild.members.cache.get(user);
 		const stream = await ytdl(url, { filter: 'audioonly' });
