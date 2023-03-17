@@ -47,6 +47,8 @@ for (const file of commandFiles) {
 // Log in to Discord with your client's token
 client.login(token);
 // hello
-client.user.setActivity('paint dry', { type: ActivityType.Watching });
+client.on('ready', () => {
+	client.user.setActivity('paint dry', { type: ActivityType.Watching });
+});
 
 module.exports = { client };
