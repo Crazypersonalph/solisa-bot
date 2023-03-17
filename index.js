@@ -44,10 +44,9 @@ for (const file of commandFiles) {
 	}
 }
 
-client.user.setActivity('paint dry', { type: ActivityType.Watching });
-
 // Log in to Discord with your client's token
 client.login(token);
 // hello
+client.user.setActivity('paint dry', { type: ActivityType.Watching });
 
 module.exports = { client };
