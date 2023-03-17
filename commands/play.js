@@ -12,6 +12,7 @@ module.exports = {
 				.setDescription('The song you want to play')
 				.setRequired(true)),
 	async execute(interaction) {
+		await interaction.deferReply();
 		const user = interaction.user.id;
 		const url = interaction.options.getString('url');
 		const member = interaction.guild.members.cache.get(user);
