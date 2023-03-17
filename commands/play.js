@@ -12,7 +12,6 @@ module.exports = {
 				.setDescription('The song you want to play')
 				.setRequired(true)),
 	async execute(interaction) {
-		await interaction.deferReply();
 		const user = interaction.user.id;
 		const url = interaction.options.getString('url');
 		const member = interaction.guild.members.cache.get(user);
@@ -26,7 +25,7 @@ module.exports = {
 		const song_info = await ytdl.getInfo(url);
 		const resource = createAudioResource(stream);
 		connection.subscribe(player);
-		player.play(resource);
 		await interaction.reply(`Now playing: ${song_info.videoDetails.title}`);
+		player.play(resource);
 	},
 };
