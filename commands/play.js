@@ -12,9 +12,9 @@ module.exports = {
 				.setDescription('The song you want to play')
 				.setRequired(true)),
 	async execute(interaction) {
+		await interaction.deferReply();
 		const url = interaction.options.getString('url');
 		const song_info = await ytdl.getInfo(url);
-		await interaction.deferReply();
 		await interaction.editReply(`Now playing: ${song_info.videoDetails.title}`);
 		const user = interaction.user.id;
 		const member = interaction.guild.members.cache.get(user);
