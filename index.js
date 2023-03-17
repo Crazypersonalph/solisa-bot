@@ -49,7 +49,4 @@ client.login(token);
 // hello
 client.on('ready', () => {
 	client.user.setActivity('paint dry', { type: ActivityType.Watching });
-	client.isPaused = false;
 });
-
-module.exports = { client };
