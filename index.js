@@ -29,7 +29,7 @@ for (const file of eventFiles) {
 
 client.commands = new Collection();
 
-client.queue = new Collection();
+const queue = new Collection();
 
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
@@ -53,4 +53,4 @@ client.on('ready', () => {
 	client.user.setActivity('paint dry', { type: ActivityType.Watching });
 });
 
-module.exports = { client };
+module.exports = { queue };
