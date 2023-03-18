@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource, demuxProbe } = require('@discordjs/voice');
 const ytdl = require('ytdl-core');
-const { createReadStream } = require('node:fs');
 
 async function probeAndCreateResource(readableStream) {
 	const { stream, type } = await demuxProbe(readableStream);
@@ -30,7 +29,7 @@ module.exports = {
 			adapterCreator: member.voice.guild.voiceAdapterCreator,
 		});
 		const player = createAudioPlayer();
-		const resource = await probeAndCreateResource(createReadStream(stream));
+		const resource = await probeAndCreateResource(stream);
 		connection.subscribe(player);
 		player.play(resource);
 	},
