@@ -1,7 +1,12 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { joinVoiceChannel, createAudioPlayer, createAudioResource } = require('@discordjs/voice');
+const { joinVoiceChannel, createAudioPlayer, createAudioResource, demuxProbe } = require('@discordjs/voice');
 const ytdl = require('ytdl-core');
-// const { createReadStream } = require('node:fs');
+const { createReadStream } = require('node:fs');
+
+async function probeAndCreateResource(readableStream) {
+	const { stream, type } = await demuxProbe(readableStream);
+	return createAudioResource(stream, { inputType: type });
+}
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -25,7 +30,7 @@ module.exports = {
 			adapterCreator: member.voice.guild.voiceAdapterCreator,
 		});
 		const player = createAudioPlayer();
-		const resource = createAudioResource(stream);
+		const resource = await probeAndCreateResource(createReadStream(stream));
 		connection.subscribe(player);
 		player.play(resource);
 	},
