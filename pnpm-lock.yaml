@@ -1,13 +1,13 @@
 lockfileVersion: '6.0'
 
 settings:
-  autoInstallPeers: false
+  autoInstallPeers: true
   excludeLinksFromLockfile: false
 
 dependencies:
   '@discordjs/voice':
     specifier: ^0.16.0
-    version: 0.16.0(ffmpeg-static@5.1.0)(opusscript@0.1.0)
+    version: 0.16.0(ffmpeg-static@5.1.0)(opusscript@0.1.1)
   discord.js:
     specifier: ^14.11.0
     version: 14.11.0
@@ -30,8 +30,8 @@ dependencies:
     specifier: ^2.1.3
     version: 2.1.3
   opusscript:
-    specifier: ^0.1.0
-    version: 0.1.0
+    specifier: ^0.1.1
+    version: 0.1.1
   sodium-native:
     specifier: ^4.0.4
     version: 4.0.4
@@ -108,13 +108,13 @@ packages:
     engines: {node: '>=16.9.0'}
     dev: false
 
-  /@discordjs/voice@0.16.0(ffmpeg-static@5.1.0)(opusscript@0.1.0):
+  /@discordjs/voice@0.16.0(ffmpeg-static@5.1.0)(opusscript@0.1.1):
     resolution: {integrity: sha512-ToGCvHD1cBscuW3p+C7zOF5+L7MJmU4GjdOARfNk9mkHyFFZq4grK+Sxr3QXKbp27DtfDBc9uqD4GUOYgxngfA==}
     engines: {node: '>=16.9.0'}
     dependencies:
       '@types/ws': 8.5.5
       discord-api-types: 0.37.48
-      prism-media: 1.3.5(ffmpeg-static@5.1.0)(opusscript@0.1.0)
+      prism-media: 1.3.5(ffmpeg-static@5.1.0)(opusscript@0.1.1)
       tslib: 2.6.0
       ws: 8.13.0
     transitivePeerDependencies:
@@ -830,8 +830,8 @@ packages:
       type-check: 0.4.0
     dev: true
 
-  /opusscript@0.1.0:
-    resolution: {integrity: sha512-Jc1d2u7AutNcUCoSpshhStW4CVAZXqh8n832ZTFUwZowof+xq2JW4umsWwAUOdtczn2z0UJMkUoTYBFT8qto9g==}
+  /opusscript@0.1.1:
+    resolution: {integrity: sha512-mL0fZZOUnXdZ78woRXp18lApwpp0lF5tozJOD1Wut0dgrA9WuQTgSels/CSmFleaAZrJi/nci5KOVtbuxeWoQA==}
     dev: false
 
   /p-limit@3.1.0:
@@ -884,7 +884,7 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prism-media@1.3.5(ffmpeg-static@5.1.0)(opusscript@0.1.0):
+  /prism-media@1.3.5(ffmpeg-static@5.1.0)(opusscript@0.1.1):
     resolution: {integrity: sha512-IQdl0Q01m4LrkN1EGIE9lphov5Hy7WWlH6ulf5QdGePLlPas9p2mhgddTEHrlaXYjjFToM1/rWuwF37VF4taaA==}
     peerDependencies:
       '@discordjs/opus': '>=0.8.0 <1.0.0'
@@ -902,7 +902,7 @@ packages:
         optional: true
     dependencies:
       ffmpeg-static: 5.1.0
-      opusscript: 0.1.0
+      opusscript: 0.1.1
     dev: false
 
   /progress@2.0.3:
